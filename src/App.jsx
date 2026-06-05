@@ -2,10 +2,7 @@ import ClawMachineDailyReport from './ClawMachineDailyReport';
 import './App.css';
 
 function App() {
-  return <ClawMachineDailyReport />;
-}
-
-useEffect(() => {
+  useEffect(() => {
   const saved = localStorage.getItem("claw_machine_data");
 
   if (saved) {
@@ -17,8 +14,7 @@ useEffect(() => {
     if (data.manager) setManager(data.manager);
   }
 }, []);
-
-useEffect(() => {
+  useEffect(() => {
   localStorage.setItem(
     "claw_machine_data",
     JSON.stringify({
@@ -29,8 +25,7 @@ useEffect(() => {
     })
   );
 }, [rows, date, staffName, manager]);
-
-<button
+  <button
   onClick={() => {
     localStorage.removeItem("claw_machine_data");
     window.location.reload();
@@ -38,5 +33,8 @@ useEffect(() => {
 >
   Clear All Data
 </button>
+  
+  return <ClawMachineDailyReport />;
+}
 
 export default App;
