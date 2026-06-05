@@ -73,6 +73,35 @@ export default function ClawMachineDailyReport() {
   const [imagePreview, setImagePreview] = useState(null);
   const fileRef = useRef();
 
+  useEffect(() => {
+  const saved = localStorage.getItem("claw_report");
+
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+
+      if (data.rows) setRows(data.rows);
+      if (data.date) setDate(data.date);
+      if (data.staffName) setStaffName(data.staffName);
+      if (data.manager) setManager(data.manager);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(
+    "claw_report",
+    JSON.stringify({
+      rows,
+      date,
+      staffName,
+      manager,
+    })
+  );
+}, [rows, date, staffName, manager]);
+
   const updateRow = (no, field, val) => {
     setRows(prev => prev.map(r => {
       if (r.no !== no) return r;
