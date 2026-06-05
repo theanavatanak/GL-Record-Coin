@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 const MACHINES = [
   { no: 5,  name: "Claw Boy 5",              code: "Z3-018", size: "S",   capacity: 60  },
